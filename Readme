@@ -4,13 +4,13 @@
 ## Setup
 
 ```
+mkdir messenger && cd messenger
 curl -L https://github.com/electron/electron/releases/download/v1.8.4/electron-v1.8.4-linux-x64.zip -o tmp.zip
 unzip tmp.zip
 rm tmp.zip
-cd electron-*
+mkdir resources/app
 curl -L http://github.com/adabru/messenger/archive/master.tar.gz | tar xz -C resources/app --strip 1
-mv electron messenger
 
 # start it
-./messenger
+./electron
 ```
