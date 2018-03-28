@@ -14,3 +14,5 @@ curl -L http://github.com/adabru/messenger/archive/master.tar.gz | tar xz -C res
 # start it
 ./electron
 ```
+
+Userdata (the messenger sessions) can be found in ↑resources/app/userData/ .
