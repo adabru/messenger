@@ -1,0 +1,70 @@
+<meta charset="utf8"/>
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+}
+webview {
+  width: calc(50% - 2px);
+  height: calc(50% - 2px);
+  display: inline-flex;
+}
+</style>
+
+<script>
+onload = () => {
+  var WA = document.getElementById("WA"),
+    RC = document.getElementById("RC"),
+    TH = document.getElementById("TH"),
+    FB = document.getElementById("FB");
+
+  WA.addEventListener('dom-ready', () => WA.setZoomFactor(.7));
+
+  RC.addEventListener('dom-ready', () => {
+    RC.setZoomFactor(.85)
+    RC.insertCSS(`
+      .rooms-list h3 { display: none; }
+      .rooms-list ul:nth-child(2) { display: none; }
+      .sidebar header { display: none; }
+      .sidebar footer { display: none; }
+    `)
+  });
+
+  TH.addEventListener('dom-ready', () => {
+    TH.setZoomFactor(.7)
+    TH.insertCSS(`
+      #main-wrapper header { display:none; }
+      #main-wrapper footer { display:none; }
+      #main-wrapper.wide { height: 99%; }
+    `)
+    TH.executeJavaScript(`
+      var input = document.querySelector('input[type=password]')
+      input.value = "threema"
+      input.dispatchEvent( new Event('input') )
+      document.querySelector('form').dispatchEvent( new Event('submit') )
+    `)
+  });
+
+  FB.addEventListener('dom-ready', () => {
+    FB.setZoomFactor(.8)
+    FB.insertCSS(`
+      #mobile_mirror_banner { display: none; }
+      #mainContainer #leftCol { display: none; }
+      #mainContainer #rightCol { display: none; }
+      div[role=navigation] > div:nth-child(1) { display: none; }
+      div[role=navigation] > div:nth-child(3) { display: none; }
+      #contentCol { width: 95% !important; }
+      #pagelet_bluebar ~ #globalContainer { width: 100% !important; }
+      #contentArea { position: initial; width: 95% !important; }
+      #BuddylistPagelet { width: 180px; }
+    `)
+    // FB.openDevTools()
+  });
+}
+</script>
+
+<webview id="WA" src="https://web.whatsapp.com"></webview>
+<webview id="FB" src="https://www.facebook.com"></webview>
+<webview id="RC" src="https://rclufgi9.informatik.rwth-aachen.de"></webview>
+<webview id="TH" src="https://web.threema.ch"></webview>
